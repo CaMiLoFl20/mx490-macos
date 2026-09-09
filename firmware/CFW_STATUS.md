@@ -276,3 +276,12 @@ and emits a flat payload at a chosen runtime base. A test pack at
 layout record is `firmware/arm-payload-pack-4.040.json`. This is an offline
 position-fixed analysis artifact; it has no HTTP dispatch entry or scanner
 callbacks and must not be flashed.
+
+The repository now includes `firmware/inject_experimental_srec.py`. It inserts a
+packed payload only when it is inside the `SF0C` address window and does not
+overlap existing data, preserves Canon wrapper/start records, and revalidates
+every standard S-record checksum. A test insertion of the 4,352-byte probe at
+`0xF0CA2198` generated 136 valid S3 records; the output SHA-256 is recorded in
+`firmware/experimental-srec-pack-4.040.json`. The stream is explicitly marked
+non-flashable because it has no HTTP dispatch hook, scanner binding, or verified
+boot/integrity behavior.

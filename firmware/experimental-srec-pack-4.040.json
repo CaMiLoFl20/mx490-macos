@@ -1,0 +1,12 @@
+{
+  "source": "/private/tmp/mx490-fw/clean-decrypted.bin",
+  "payload": "/tmp/mx490-arm/escl-payload.bin",
+  "payload_base": "0xf0ca2198",
+  "payload_end_exclusive": "0xf0ca3298",
+  "payload_size": 4352,
+  "payload_sha256": "bbad4547fe2fc6d51e0199789ff3a56c8b4bb28d00238acc8a22a34bf12bbe09",
+  "output": "/tmp/mx490-arm/experimental.srec",
+  "output_sha256": "03e7dd028b131fc504fe78c38540018ac6e36d103a10c5dc92a215bd514ebfbb",
+  "generated_s3_records": 136,
+  "flashable": false
+}
