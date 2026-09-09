@@ -302,3 +302,11 @@ StartSession, `0xd820` ScanParam3, `0xd920` ScanStart3, `0xda20` status polls,
 validates response framing, and passes host tests; the C module also compiles
 as ARM/Thumb. The protocol capture is from a related Canon model, so each
 command must be validated against MX490 before native firmware integration.
+
+External protocol references now live in `firmware/protocol-references.md`.
+Canon's MX490 manual confirms a WSD-scan setting, while the archived
+`libmfp2-canon` project explicitly lists MX490 support through Canon's newer
+proprietary scanner protocol. `sane-airscan` lists the nearby MX470 family as
+WSD-capable but does not list MX490, and the public CHMP sequence is scoped to
+G3010. Together these references support a translation-layer approach while
+keeping MX490 protocol compatibility an open validation item.
