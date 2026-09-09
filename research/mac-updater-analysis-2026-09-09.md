@@ -38,6 +38,13 @@ named `sendBJLCommand` and `receiveStatusData` methods give us a tractable
 target for static disassembly and, if needed, USB traffic capture. This is more
 promising than trying to infer the HTTP hook from the firmware image alone.
 
+Disassembly adds two concrete details: both the bulk write and interrupt/status
+read paths use the interface's discovered pipe references, and both pass
+`0xea60` (60,000 bytes) as the transfer size/timeout arguments. The read path
+installs `ReadCompletion` and the write path installs `WriteCompletion`, then
+waits on a CoreFoundation run loop. This confirms that the updater's initial
+identity exchange is USB-pipe traffic rather than the network BJNP service.
+
 The updater does not appear to expose a public firmware-read operation by name;
 the visible ROM method is a write path. Therefore the immediate safe objective
 is to recover the **read-only identity/status exchange** and the exact transition
