@@ -259,3 +259,11 @@ as ARM EABI5 relocatable objects; their combined pre-link footprint is about
 ARM compiler but no ARM-capable linker (`ld.lld` or `arm-none-eabi-ld`), and the
 host Apple linker rejects ARM objects. The layout and exact limitation are
 recorded in `firmware/arm-freestanding-layout.json`.
+
+After replacing compiler-generated division with a freestanding decimal
+formatter, the adapter plus shims compile as one ARM relocatable object with
+no undefined symbols. The amalgamated probe is 1,564 bytes of `.text`, about
+2.8 KiB of read-only data, and 116 bytes of `.bss`; only internal relocations
+remain for a real linker. This removes the libc/runtime dependency from the
+candidate payload, while the missing ARM linker and Canon integration hooks
+remain separate issues.

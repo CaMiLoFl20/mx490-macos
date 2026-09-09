@@ -1,5 +1,8 @@
 {
-  "sources": ["firmware/escl_adapter.c", "firmware/arm_freestanding_shims.c"],
+  "sources": [
+    "firmware/escl_adapter.c",
+    "firmware/arm_freestanding_shims.c"
+  ],
   "target": "arm-none-eabi / ARM926EJ-S / Thumb",
   "compile_result": "both sources compile as ELF32 ARM EABI5 relocatable objects with -ffreestanding -fPIC -Os -Wall -Wextra -Werror",
   "sections": {
@@ -9,9 +12,24 @@
     "libc_shims_text": 440,
     "libc_shims_rodata": 41
   },
-  "combined_prelink_bytes": 4063,
-  "shim_exports": ["strlen", "strcmp", "strncmp", "strcspn", "snprintf"],
-  "link_status": "not linked",
-  "link_blocker": "The development environment has Clang's ARM compiler but no ARM-capable ld.lld or arm-none-eabi-ld; Apple's host linker rejects ARM relocatable linking.",
-  "caveat": "The shims are probe code only. Canon-native allocator, HTTP, and scanner callbacks remain unresolved, and no firmware image was generated."
+  "combined_prelink_bytes": 4465,
+  "shim_exports": [
+    "strlen",
+    "strcmp",
+    "strncmp",
+    "strcspn",
+    "snprintf"
+  ],
+  "link_status": "not linked; amalgamated object has no undefined symbols",
+  "link_blocker": "No ARM-capable ld.lld or arm-none-eabi-ld is installed; host Apple linker rejects ARM objects.",
+  "caveat": "The shims are probe code only. Canon-native allocator, HTTP, and scanner callbacks remain unresolved, and no firmware image was generated.",
+  "amalgamated_probe": {
+    "format": "ELF32 ARM EABI5 relocatable",
+    "text": 1564,
+    "rodata_str1_1": 213,
+    "rodata": 2572,
+    "bss": 116,
+    "undefined_symbols": [],
+    "relocations": "internal relocations remain until linking"
+  }
 }
