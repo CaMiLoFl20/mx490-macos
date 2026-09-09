@@ -77,6 +77,14 @@ recoverable signing key. Replacing an AirScan service would still require a
 verified image that the bootloader accepts, plus a correct runtime load address
 and memory budget for the new HTTP and scan-job code.
 
+There is a useful precedent for this platform family: Synacktiv documented
+older DryOS Canon PIXMA models using the same hardcoded USB-product update URL,
+XOR-wrapped S-record firmware, and ARM runtime layout. Their report says those
+older updates were not signed and describes the HTTP/BJNP task structure. That
+raises the feasibility of a research build, but it does not prove that the
+MX490's 4.050 boot path accepts a modified image. The report is a reference for
+analysis only: <https://www.synacktiv.com/sites/default/files/2021-06/thcon2021_canon_printer.pdf>.
+
 ## Comparison workflow
 
 When a verified 4.050 image becomes available, compare decoded images with:
