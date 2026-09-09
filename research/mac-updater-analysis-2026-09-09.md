@@ -45,6 +45,14 @@ installs `ReadCompletion` and the write path installs `WriteCompletion`, then
 waits on a CoreFoundation run loop. This confirms that the updater's initial
 identity exchange is USB-pipe traffic rather than the network BJNP service.
 
+The updater's identity parser uses the literal keys `MDL:`, `VER:`, `STA:`,
+`DES:`, and `CMD:`. It stores those results as the device model, firmware
+version, status, description, and command fields. The status parser treats the
+reported `STA` value as a bit field and maps values such as `0x10`, `0x20`, and
+`0x30` to update states. This gives us a concrete read-only transcript target:
+capture the USB response containing those five tagged fields while the updater
+is only displaying the current version.
+
 The updater does not appear to expose a public firmware-read operation by name;
 the visible ROM method is a write path. Therefore the immediate safe objective
 is to recover the **read-only identity/status exchange** and the exact transition
