@@ -53,6 +53,12 @@ reported `STA` value as a bit field and maps values such as `0x10`, `0x20`, and
 capture the USB response containing those five tagged fields while the updater
 is only displaying the current version.
 
+The disassembly now confirms the call order: `getPrinterInformation` requests
+`MDL:`, `VER:`, `DES:`, `STA:`, and `CMD:` from the same device-ID query helper,
+then writes those five returned values into the device model object. This is a
+complete description of the pre-update identity read at the application level;
+only the underlying USB packet bytes remain to be captured.
+
 The updater does not appear to expose a public firmware-read operation by name;
 the visible ROM method is a write path. Therefore the immediate safe objective
 is to recover the **read-only identity/status exchange** and the exact transition
