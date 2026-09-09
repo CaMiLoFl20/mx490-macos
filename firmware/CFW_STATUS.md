@@ -70,6 +70,13 @@ One component contains the live `1787.bin` update URL and the update user
 interface strings. This narrows the next reverse-engineering step to the
 manifest verification path rather than guessing at a firmware container.
 
+The raw decoded image has a real scanner-service anchor: the printable task
+identifier `tskWSDScanInfoServi...` at offset `0x2df1ac`, plus `WSDBasicIO.cpp`,
+`WSDManager`, `ScanJobItem`, `[ScanParam]`, and `[PageScan Par...]` strings.
+That establishes that the image already has a structured WSD scanner task and
+scan-job data model. The repository now includes `inventory_services.py` to
+reproduce this service/string inventory against any later 4.050 dump.
+
 Static inspection shows that the same component includes TLS cipher tables,
 AES-GCM, SHA, and RSA references. That is evidence that the device has the
 cryptographic machinery needed to validate update metadata, but it is not a
