@@ -226,3 +226,12 @@ The surrounding code identifies a zlib-style wrapper at file offset `0x2ac4`
 `firmware/zlib-wrapper-4.040.json`. The wrapper is likely reached through a
 relocation table or function pointer because no direct static ARM `BL` caller
 is present in the image.
+
+The verified S-record intervals also expose several erased/reserved ranges
+inside the mapped flash space. The largest are runtime `0xF0B10458–0xF0C81000`
+(about 1.45 MiB) and `0xF0CA2198–0xF0FEFFFF` (about 3.30 MiB), with smaller
+holes near `0xF024DC7D`. These ranges could theoretically hold a native eSCL
+handler, but only after proving the bootloader accepts records there, the
+runtime maps them executable, and the image integrity checks remain valid. The
+inventory is recorded in `firmware/free-space-4.040.json`; nothing has been
+written into those ranges.

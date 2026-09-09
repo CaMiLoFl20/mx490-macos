@@ -1,0 +1,14 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "runtime_base": "0xF0020000",
+  "source": "standard S-record data-record intervals from the verified clean 4.040 container",
+  "free_ranges": [
+    {"runtime_start": "0xF024DC7D", "runtime_end_exclusive": "0xF0260000", "size": 74627},
+    {"runtime_start": "0xF02754C8", "runtime_end_exclusive": "0xF027FFFF", "size": 43832},
+    {"runtime_start": "0xF0B10458", "runtime_end_exclusive": "0xF0C81000", "size": 1517480},
+    {"runtime_start": "0xF0CA2198", "runtime_end_exclusive": "0xF0FEFFFF", "size": 3460711}
+  ],
+  "largest_candidate_total": 4978191,
+  "interpretation": "The S-record stream leaves several multi-megabyte erased/reserved ranges inside the mapped flash address space. These are potential placement areas for a new eSCL handler, subject to bootloader range checks, image checksums/signatures, linker/runtime assumptions, and RAM budget.",
+  "caveat": "An erased S-record range is not automatically safe executable space. No code was inserted and no flash image was generated."
+}
