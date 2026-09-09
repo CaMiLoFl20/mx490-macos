@@ -70,6 +70,13 @@ One component contains the live `1787.bin` update URL and the update user
 interface strings. This narrows the next reverse-engineering step to the
 manifest verification path rather than guessing at a firmware container.
 
+Static inspection shows that the same component includes TLS cipher tables,
+AES-GCM, SHA, and RSA references. That is evidence that the device has the
+cryptographic machinery needed to validate update metadata, but it is not a
+recoverable signing key. Replacing an AirScan service would still require a
+verified image that the bootloader accepts, plus a correct runtime load address
+and memory budget for the new HTTP and scan-job code.
+
 ## Comparison workflow
 
 When a verified 4.050 image becomes available, compare decoded images with:
