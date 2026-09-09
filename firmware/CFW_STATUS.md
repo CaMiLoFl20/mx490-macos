@@ -201,3 +201,12 @@ known MG6450-style unpacker cannot be reused as-is for MX490. It does not prove
 that no other decompressor exists, but it removes the only known direct route
 to recovering executable application code from this image. The resulting
 machine-readable checkpoint is `firmware/compression-4.040.json`.
+
+A further ARM disassembly pass located the embedded zlib `inflate` runtime at
+file offset `0x2cb8` (runtime `0xF0022CB8` with the verified image mapping),
+ending near `0x3164`. Its bit-buffer refill, canonical Huffman table lookups,
+literal output loops, length-distance copies, and nearby zlib error strings are
+consistent with a standard `inflate` implementation. The finding is recorded
+in `firmware/zlib-runtime-4.040.json`. This is a loader/runtime anchor for
+future call-site recovery; it is not evidence that a modified image can be
+accepted or booted by the printer.

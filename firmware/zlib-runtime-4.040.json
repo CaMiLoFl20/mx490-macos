@@ -1,0 +1,23 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "mapping": {
+    "file_base": "0x00000000",
+    "runtime_base": "0xF0020000",
+    "runtime_formula": "runtime = runtime_base + file_offset"
+  },
+  "inflate_runtime": {
+    "file_offset_start": "0x00002cb8",
+    "runtime_start": "0xF0022CB8",
+    "file_offset_end_exclusive": "0x00003164",
+    "runtime_end_exclusive": "0xF0023164",
+    "entry_bytes": "f74f2de950d04de20020a0e300208de5",
+    "evidence": [
+      "ARM prologue saves the full inflate working set and allocates a 0x50-byte state area",
+      "Huffman-table lookups use bit-buffer refill, canonical-code tables, and 0xff end markers",
+      "literal output uses ldrb/strb loops and length-distance output copies",
+      "nearby strings include zlib errors: incorrect header check, invalid block type, invalid distance code, and incorrect data check"
+    ]
+  },
+  "interpretation": "MX490 4.040 uses standard zlib inflate for the four embedded payloads; the known related-model proprietary LZ signature is not required for these streams.",
+  "caveat": "This identifies a decompression runtime, not the caller, destination addresses, signature verification, or a flashable custom-firmware path."
+}
