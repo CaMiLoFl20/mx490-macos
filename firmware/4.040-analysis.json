@@ -1,0 +1,340 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "size": 16580608,
+  "sha256": "2210f9bee042bc05bc6feea4b0d5bea5e328ad62ebd1fe7b8ef320b98d3e9ba0",
+  "interesting_strings": [
+    {
+      "offset": 1379011,
+      "value": "(|WsD\\"
+    },
+    {
+      "offset": 2517499,
+      "value": "BJNPSETUsg1"
+    },
+    {
+      "offset": 2534730,
+      "value": "_doBonjourS[m"
+    },
+    {
+      "offset": 2534771,
+      "value": "update(M"
+    },
+    {
+      "offset": 2665299,
+      "value": "firmo'<"
+    },
+    {
+      "offset": 2692357,
+      "value": "BJNP2V"
+    },
+    {
+      "offset": 2693738,
+      "value": "WSDBasicIO.cp"
+    },
+    {
+      "offset": 2695497,
+      "value": "DmyHttpClient : "
+    },
+    {
+      "offset": 2793888,
+      "value": "</wsdp:ThisM"
+    },
+    {
+      "offset": 2858152,
+      "value": "<wsdp:"
+    },
+    {
+      "offset": 2944169,
+      "value": "B\\+http://schemas.xmlsoap.org/ws/2004/08/addr"
+    },
+    {
+      "offset": 2946943,
+      "value": "_ipp.c"
+    },
+    {
+      "offset": 2957656,
+      "value": "KSL_HTTP_"
+    },
+    {
+      "offset": 2973141,
+      "value": "IPP_wE"
+    },
+    {
+      "offset": 2981373,
+      "value": "firmup"
+    },
+    {
+      "offset": 3010988,
+      "value": "tskWSDScanInfoServiT"
+    },
+    {
+      "offset": 3016077,
+      "value": "HTTP_COOKIE"
+    },
+    {
+      "offset": 3017885,
+      "value": "http-equiv=author cM "
+    },
+    {
+      "offset": 3320487,
+      "value": "BJNPSET"
+    },
+    {
+      "offset": 3369940,
+      "value": "bonjour"
+    },
+    {
+      "offset": 3387038,
+      "value": "HTTP/1."
+    },
+    {
+      "offset": 3612206,
+      "value": "update_aq"
+    },
+    {
+      "offset": 3657025,
+      "value": "firmwareI!"
+    },
+    {
+      "offset": 3754258,
+      "value": "ks_httpmisc.c$"
+    },
+    {
+      "offset": 3759705,
+      "value": "ipp://%s\\s%d"
+    },
+    {
+      "offset": 3807240,
+      "value": "[ScanParam]"
+    },
+    {
+      "offset": 3863751,
+      "value": "[PageScan Par"
+    },
+    {
+      "offset": 3866320,
+      "value": "a http-equiv=author cT"
+    },
+    {
+      "offset": 3954568,
+      "value": "<meta http-equiv=author content=\"Canon Inc.\"S"
+    },
+    {
+      "offset": 3962548,
+      "value": "META HTTP-EQUIV"
+    },
+    {
+      "offset": 4403932,
+      "value": "WSDMemAlloc.cpp"
+    },
+    {
+      "offset": 4453925,
+      "value": "http://www.w3.org/XML/1998/n7!,.n$y"
+    },
+    {
+      "offset": 4822553,
+      "value": "-sse-scanner-unit:"
+    },
+    {
+      "offset": 4822708,
+      "value": "X-CISSE-SCAN"
+    },
+    {
+      "offset": 4830429,
+      "value": "confirm"
+    },
+    {
+      "offset": 4890250,
+      "value": "confirma"
+    },
+    {
+      "offset": 4962350,
+      "value": "http://m"
+    },
+    {
+      "offset": 4962630,
+      "value": "ISSE-SCANy"
+    },
+    {
+      "offset": 5075581,
+      "value": "BJNP_UDP_Dae="
+    },
+    {
+      "offset": 5078530,
+      "value": "WSDSSFy"
+    },
+    {
+      "offset": 5084908,
+      "value": "httpc_thread_main 9A<"
+    },
+    {
+      "offset": 5303431,
+      "value": "[ScanIP]"
+    },
+    {
+      "offset": 5491025,
+      "value": "http://www.x"
+    },
+    {
+      "offset": 5567950,
+      "value": "SCANBLANK"
+    },
+    {
+      "offset": 5683990,
+      "value": "Jobconfirm"
+    },
+    {
+      "offset": 6039956,
+      "value": "http-equiv"
+    },
+    {
+      "offset": 6681550,
+      "value": " PAFaxActiveScan::execInternalEvent ID_EV_FAXACTIVE_SUB_APPLI_ERRORD"
+    },
+    {
+      "offset": 6683043,
+      "value": "c=\"http://www."
+    },
+    {
+      "offset": 6689787,
+      "value": "firmwr"
+    },
+    {
+      "offset": 6706104,
+      "value": "I``IppI"
+    },
+    {
+      "offset": 6854530,
+      "value": "n scan_ybt is r5,"
+    },
+    {
+      "offset": 6881075,
+      "value": "I@@IPPI``IppI"
+    },
+    {
+      "offset": 6898079,
+      "value": "PAGESCAN"
+    },
+    {
+      "offset": 7185660,
+      "value": "@\"<meta http-equiv=\"Content-Type\" c"
+    },
+    {
+      "offset": 7189502,
+      "value": "META HTTP-EQUIV"
+    },
+    {
+      "offset": 7243184,
+      "value": "meta http-equiv=\"C2="
+    },
+    {
+      "offset": 7424588,
+      "value": "=\"http://www.w3.org/1999D"
+    },
+    {
+      "offset": 7569626,
+      "value": "nd_xmlhttp('../);"
+    },
+    {
+      "offset": 7581082,
+      "value": "HTTP_JOB"
+    },
+    {
+      "offset": 7597085,
+      "value": "HTTPCLIE"
+    },
+    {
+      "offset": 7597807,
+      "value": "xmlhttp("
+    },
+    {
+      "offset": 7967197,
+      "value": "le skipp"
+    },
+    {
+      "offset": 9055141,
+      "value": "DRYOS PANIC: Module Code = %d,F"
+    },
+    {
+      "offset": 9057133,
+      "value": "Dry-ITRON4."
+    },
+    {
+      "offset": 9286819,
+      "value": "* \"leepConfirmTmr"
+    },
+    {
+      "offset": 9366127,
+      "value": "SCANEA -"
+    },
+    {
+      "offset": 9406234,
+      "value": "ITRON4."
+    },
+    {
+      "offset": 9406333,
+      "value": "DRYOS8W-yP-"
+    },
+    {
+      "offset": 9415206,
+      "value": "I@@IPPI``IppI"
+    },
+    {
+      "offset": 9573086,
+      "value": "I@@IPPI``IppI"
+    },
+    {
+      "offset": 9630374,
+      "value": ". See <http://<^@"
+    },
+    {
+      "offset": 9630740,
+      "value": "update forH "
+    },
+    {
+      "offset": 10702957,
+      "value": "10WSDManager"
+    },
+    {
+      "offset": 10703013,
+      "value": "ScanJobItem"
+    },
+    {
+      "offset": 10703836,
+      "value": "Firmwa"
+    },
+    {
+      "offset": 10798546,
+      "value": "firmvBq"
+    },
+    {
+      "offset": 10799381,
+      "value": "HTTP_X_"
+    },
+    {
+      "offset": 10799621,
+      "value": "https://www.google.com/cloud"
+    },
+    {
+      "offset": 10803009,
+      "value": "bonjourn"
+    },
+    {
+      "offset": 10833225,
+      "value": "BJNP!&BT3"
+    },
+    {
+      "offset": 11254343,
+      "value": "http://rs.ciggws.net/rd.cgi"
+    },
+    {
+      "offset": 12998318,
+      "value": "DeviceCapabilities =p3ns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"6"
+    },
+    {
+      "offset": 13017928,
+      "value": "Shipp8"
+    }
+  ],
+  "airscan_strings_found": false
+}

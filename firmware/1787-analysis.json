@@ -1,0 +1,10 @@
+{
+  "file": "/private/tmp/mx490-fw/1787.bin",
+  "size": 272,
+  "sha256": "642cfa85aac935adc85769429f8b4bc5a94bbe0a418269301fd42342ebdce053",
+  "md5": "205519b384407d69c3aaf34b32c0a4d1",
+  "entropy_bits_per_byte": 7.28653,
+  "aes_block_aligned_payload": true,
+  "ascii_strings": [],
+  "first_32_bytes_hex": "1337fbf16bc99b7bc30ab3bdbde84b239cc8455fb9b275d2fa81d98581671571"
+}

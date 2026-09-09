@@ -1,0 +1,33 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "blocks": [
+    {
+      "offset": 20484,
+      "compressed_length": 618474,
+      "decoded_length": 1048576,
+      "decoded_sha256": "a7b11ccd5db72a791fe3681b3cbd124f9ba04a8ca16bbbc92933851e3933742d",
+      "file": "block_00005004.bin"
+    },
+    {
+      "offset": 638964,
+      "compressed_length": 587010,
+      "decoded_length": 1048576,
+      "decoded_sha256": "07d78a7d1162092c4adb60a08cbab42dca12fc94bfc0f3bde099ca26ca85a177",
+      "file": "block_0009bff4.bin"
+    },
+    {
+      "offset": 1225980,
+      "compressed_length": 647461,
+      "decoded_length": 1048576,
+      "decoded_sha256": "b05c5de23d03645863d8a84c6ae3c1aa879d1d52d5d9149e7f88b66216434a80",
+      "file": "block_0012b4fc.bin"
+    },
+    {
+      "offset": 1873448,
+      "compressed_length": 411221,
+      "decoded_length": 443160,
+      "decoded_sha256": "3a253f8d0d889de17580a44de925dc91c342cf89a21967be0614cd5f2bf56ddb",
+      "file": "block_001c9628.bin"
+    }
+  ]
+}
