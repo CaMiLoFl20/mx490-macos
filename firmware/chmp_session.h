@@ -6,12 +6,17 @@
 typedef int (*mx490_chmp_exchange_fn)(void *ctx, const uint8_t *request,
                                       size_t request_len, uint8_t *response,
                                       size_t response_cap, size_t *response_len);
+typedef int (*mx490_chmp_xml_exchange_fn)(void *ctx, const char *request,
+                                          size_t request_len, char *response,
+                                          size_t response_cap, size_t *response_len);
 
 struct mx490_chmp_session {
     mx490_chmp_exchange_fn exchange;
     void *ctx;
     uint8_t active;
     uint8_t ready;
+    mx490_chmp_xml_exchange_fn xml_exchange;
+    unsigned long job_id;
 };
 
 int mx490_chmp_session_start(struct mx490_chmp_session *s,

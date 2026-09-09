@@ -11,7 +11,7 @@ static int exchange(void *ctx, const uint8_t *req, size_t n, uint8_t *out, size_
     ++f->step; return 0;
 }
 int main(void) {
-    struct fake f = {0}; struct mx490_chmp_session s = {exchange, &f, 0, 0};
+    struct fake f = {0}; struct mx490_chmp_session s = {exchange, &f, 0, 0, 0, 1};
     struct mx490_chmp_scan_params p = {300,300,2550,3300,0}; uint8_t state, image[32]; size_t n; int last;
     assert(mx490_chmp_session_start(&s, &p) == 0 && s.active);
     assert(mx490_chmp_session_poll(&s, &state) == 0 && state == 3);
