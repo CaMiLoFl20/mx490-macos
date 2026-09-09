@@ -267,3 +267,12 @@ no undefined symbols. The amalgamated probe is 1,564 bytes of `.text`, about
 remain for a real linker. This removes the libc/runtime dependency from the
 candidate payload, while the missing ARM linker and Canon integration hooks
 remain separate issues.
+
+The repository now includes `firmware/pack_arm_payload.py`, which resolves the
+probe object's ARM `R_ARM_REL32` and Thumb `R_ARM_THM_CALL` relocations directly
+and emits a flat payload at a chosen runtime base. A test pack at
+`0xF0CA2198` produced a 4,352-byte blob with valid Thumb branches and SHA-256
+`bbad4547fe2fc6d51e0199789ff3a56c8b4bb28d00238acc8a22a34bf12bbe09`. The
+layout record is `firmware/arm-payload-pack-4.040.json`. This is an offline
+position-fixed analysis artifact; it has no HTTP dispatch entry or scanner
+callbacks and must not be flashed.

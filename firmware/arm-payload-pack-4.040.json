@@ -1,0 +1,26 @@
+{
+  "object": "/tmp/mx490-arm/amalgamated.o",
+  "base": "0xf0ca2198",
+  "size": 4352,
+  "sections": {
+    ".text": {
+      "offset": 0,
+      "size": 1564
+    },
+    ".rodata.str1.1": {
+      "offset": 1564,
+      "size": 213
+    },
+    ".rodata": {
+      "offset": 1780,
+      "size": 2572
+    }
+  },
+  "relocations": [
+    3,
+    10
+  ],
+  "flashable": false,
+  "sha256": "bbad4547fe2fc6d51e0199789ff3a56c8b4bb28d00238acc8a22a34bf12bbe09",
+  "output": "/tmp/mx490-arm/escl-payload.bin"
+}
