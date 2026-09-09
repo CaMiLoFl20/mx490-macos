@@ -1,0 +1,37 @@
+diff --git a/server/scanner.cpp b/server/scanner.cpp
+index df325d7..5916bf9 100644
+--- a/server/scanner.cpp
++++ b/server/scanner.cpp
+@@ -465,7 +465,12 @@ Scanner::Private::init(const sanecpp::device_info& info)
+ {
+   mDeviceInfo = info;
+   mMakeAndModel = info.vendor + " " + info.model;
+-  mPublishedName = mMakeAndModel;
++  // Match the printer's Canon Bonjour name so the bridge is recognizable as
++  // the same physical MX490 device in Image Capture.
++  if (mDeviceInfo.name.find("pixma:MX490_") == 0)
++    mPublishedName = "Canon MX490 series (AirScan)";
++  else
++    mPublishedName = mMakeAndModel;
+   generateStableUniqueName();
+   mUuid = Uuid(mStableUniqueName).toString();
+ }
+@@ -640,6 +645,18 @@ Scanner::Private::InputSource::init(const sanecpp::option_set& opt)
+     mMaxPhysicalHeight = br_y.max();
+   }
+ 
++  // SANE pixma 1.4.0 exposes the MX490's Legal-size ADF range for
++  // its flatbed too. Canon specifies a 216 x 297 mm platen. Advertising
++  // 355.6 mm makes Image Capture offset jobs beyond the physical glass.
++  // Keep the feeder range and other devices unchanged.
++  if (p->mDeviceInfo.name.find("pixma:MX490_") == 0 &&
++      mSourceName == "Flatbed" && unit == SANE_UNIT_MM) {
++    mMaxWidth = std::min(mMaxWidth, 216.0);
++    mMaxPhysicalWidth = std::min(mMaxPhysicalWidth, 216.0);
++    mMaxHeight = std::min(mMaxHeight, 297.0);
++    mMaxPhysicalHeight = std::min(mMaxPhysicalHeight, 297.0);
++  }
++
+   // eSCL expresses sizes in terms of pixels at 300 dpi
+   double f = 300;
+   switch (unit) {

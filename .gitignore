@@ -1,0 +1,6 @@
+.DS_Store
+logs/
+captures/
+scans/
+build/
+.env
