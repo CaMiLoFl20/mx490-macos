@@ -179,3 +179,16 @@ python3 firmware/query_bjnp_identity.py PRINTER_IP
 The repository does not store the printer's IP address or full identity
 response. This confirms the comparison target is 4.050, but it does not expose
 flash contents or authorize a firmware write.
+
+A direct read-only service probe against the live 4.050 printer returns HTTP
+404 for `/eSCL/ScannerCapabilities`, `/eSCL/ScannerStatus`, and `/wsd/` over
+both HTTP and HTTPS. The update CGI is present but authentication-protected
+(HTTP 401). Reproduce the route check without storing the printer address or
+response body with:
+
+```sh
+python3 firmware/probe_live_services.py PRINTER_IP
+```
+
+This is the baseline a native eSCL patch must change: the existing BJNP/WSD
+scanner remains reachable, but no eSCL HTTP endpoint is currently registered.
