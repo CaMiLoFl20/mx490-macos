@@ -166,3 +166,16 @@ not contain the MX490 firmware or a signing key. The MX490-specific
 `1787.bin` object remains a separate 272-byte opaque manifest, while the
 legacy `1787.xml` URL returns HTTP 404. These observations narrow the update
 path but do not recover firmware 4.050.
+
+The live printer's installed version is now independently confirmed through a
+read-only BJNP `GetId` request (UDP 8611). The response identifies `MX490
+series` and reports `VER:4.050`, along with the expected Canon printer command
+set. Reproduce this locally with:
+
+```sh
+python3 firmware/query_bjnp_identity.py PRINTER_IP
+```
+
+The repository does not store the printer's IP address or full identity
+response. This confirms the comparison target is 4.050, but it does not expose
+flash contents or authorize a firmware write.
