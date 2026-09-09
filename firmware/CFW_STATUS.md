@@ -310,3 +310,11 @@ proprietary scanner protocol. `sane-airscan` lists the nearby MX470 family as
 WSD-capable but does not list MX490, and the public CHMP sequence is scoped to
 G3010. Together these references support a translation-layer approach while
 keeping MX490 protocol compatibility an open validation item.
+
+The CHMP boundary now includes `chmp_session.c/.h`, a transport-callback state
+machine for binary StartSession, ScanParam3, ScanStart3, Status3 polling,
+ReadImage chunk extraction, and AbortSession. Host tests use a fake transport,
+and the module compiles as ARM/Thumb. The read path uses caller-owned buffers
+rather than allocating a 64 KiB firmware stack buffer. The current state
+machine intentionally omits the XML/ping handshake and has not been run against
+MX490; those remain integration and model-validation work.
