@@ -1,0 +1,29 @@
+{
+  "stream": "/private/tmp/mx490-fw/clean-decrypted.bin",
+  "size": 34447522,
+  "sha256": "99aa551ab7bcd40c4e817b128d5fb5974cff4d982410baa213ff5b303c0e78d7",
+  "record_count": 717663,
+  "data_record_count": 717658,
+  "wrapper_record_count": 4,
+  "valid": true,
+  "errors": [],
+  "address_ranges": [
+    {
+      "min_address": 4026662912,
+      "min_address_hex": "0xf0020000",
+      "max_exclusive": 4043243520,
+      "max_exclusive_hex": "0xf0ff0000",
+      "record_count": 717658
+    }
+  ],
+  "start_records": [
+    {
+      "type": "S7",
+      "address": 4043243520,
+      "data_length": 0,
+      "line_length": 14,
+      "line": 717662,
+      "address_hex": "0xf0ff0000"
+    }
+  ]
+}

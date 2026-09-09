@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 
-DEFAULTS = [0x1DF9DE00, 0x108A780, 0xE8009B20, 0xE8006000, 0x04000000]
+DEFAULTS = [0x1DF9DE00, 0x108A780, 0xE8009B20, 0xE8006000]
 
 
 def hits(data: bytes, value: int, width: int, endian: str) -> list[int]:
@@ -27,12 +27,16 @@ def hits(data: bytes, value: int, width: int, endian: str) -> list[int]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("image", type=Path)
-    ap.add_argument("values", nargs="*", type=lambda x: int(x, 0), default=DEFAULTS)
+    ap.add_argument(
+        "values", nargs="*", type=lambda x: int(x, 0),
+        help="numeric constants (hex or decimal); defaults to known related-Canon values",
+    )
     ap.add_argument("-o", "--output", type=Path)
     args = ap.parse_args()
     data = args.image.read_bytes()
+    values = args.values or DEFAULTS
     rows = []
-    for value in args.values:
+    for value in values:
         for width in (3, 4):
             for endian in ("little", "big"):
                 found = hits(data, value, width, endian)

@@ -128,3 +128,12 @@ python3 firmware/compare_images.py decoded-4.040.bin decoded-4.050.bin \
 ```
 
 The comparison records hashes, image lengths, the first changed offset, and the number of changed bytes. It does not assume that a changed region is safe to patch; service-level and update-verification analysis still has to be done separately.
+
+The decrypted container begins and ends with Canon-specific `SF` wrapper
+records around standard Motorola S-records. `inventory_srecords.py` now
+validates every standard record and reports the load-address range and start
+record while preserving those wrapper records as metadata. On the 4.040
+reference stream it validates 717,658 data records spanning
+`0xF0020000`–`0xF0FF0000` with start address `0xF0FF0000`. This establishes
+the image's address space for later code and decompressor analysis; it does
+not identify a safe patch point or prove that a modified image will boot.
