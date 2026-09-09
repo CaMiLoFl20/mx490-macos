@@ -1,0 +1,48 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "base": "0xf0020000",
+  "prefix_limit": 20484,
+  "vector_count": 4,
+  "vectors": [
+    {
+      "file_offset": 1940,
+      "runtime_address": "0xf0020794",
+      "instruction": "0xe51ff004",
+      "literal_offset": 1944,
+      "literal_address": "0xf0020798",
+      "loaded_value": 1270700,
+      "loaded_value_hex": "0x1363ac",
+      "target_class": "low-or-external"
+    },
+    {
+      "file_offset": 1948,
+      "runtime_address": "0xf002079c",
+      "instruction": "0xe51ff004",
+      "literal_offset": 1952,
+      "literal_address": "0xf00207a0",
+      "loaded_value": 328,
+      "loaded_value_hex": "0x148",
+      "target_class": "low-or-external"
+    },
+    {
+      "file_offset": 1968,
+      "runtime_address": "0xf00207b0",
+      "instruction": "0xe51ff004",
+      "literal_offset": 1972,
+      "literal_address": "0xf00207b4",
+      "loaded_value": 3813423,
+      "loaded_value_hex": "0x3a302f",
+      "target_class": "low-or-external"
+    },
+    {
+      "file_offset": 13808,
+      "runtime_address": "0xf00235f0",
+      "instruction": "0xe51ff004",
+      "literal_offset": 13812,
+      "literal_address": "0xf00235f4",
+      "loaded_value": 4026663100,
+      "loaded_value_hex": "0xf00200bc",
+      "target_class": "image-range"
+    }
+  ]
+}

@@ -137,3 +137,17 @@ reference stream it validates 717,658 data records spanning
 `0xF0020000`–`0xF0FF0000` with start address `0xF0FF0000`. This establishes
 the image's address space for later code and decompressor analysis; it does
 not identify a safe patch point or prove that a modified image will boot.
+
+The boot-prefix vector scan is reproducible with:
+
+```sh
+python3 firmware/analyze_boot_vectors.py decoded-4.040.bin \
+  -o firmware/boot-vectors-4.040.json
+```
+
+It finds four ARM `ldr pc, [pc, #imm]` stubs in the first `0x5004` bytes.
+Two load low addresses `0x001363AC` and `0x00000148`, one loads the literal
+`0x003A302F`, and one branches back into the image at `0xF00200BC`. This
+supports a relocation or ROM-call transition before the compressed application
+components become executable. The scan is descriptive only; it does not infer
+that any low address is safe to call or patch.
