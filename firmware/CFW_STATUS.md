@@ -77,6 +77,13 @@ That establishes that the image already has a structured WSD scanner task and
 scan-job data model. The repository now includes `inventory_services.py` to
 reproduce this service/string inventory against any later 4.050 dump.
 
+The same image also contains an internal scan-job message schema around offset
+`0x4996b4`: `X-CISSE-SCAN`, `<idJob>`, `jobStatus>submitted`, `headerInfo`,
+`vcToken`, and `judgedDocumentType`. This is a stronger integration lead than
+inventing a new scanner transport: a native eSCL handler could translate its
+`/eSCL/ScannerStatus`, `ScanJobs`, and image-stream requests into this existing
+scan-job machinery if the corresponding handler functions are recovered.
+
 Static inspection shows that the same component includes TLS cipher tables,
 AES-GCM, SHA, and RSA references. That is evidence that the device has the
 cryptographic machinery needed to validate update metadata, but it is not a
