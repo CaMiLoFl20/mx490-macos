@@ -1,0 +1,31 @@
+{
+  "source": "firmware/escl_adapter.c",
+  "target": "arm-none-eabi / ARM926EJ-S / Thumb",
+  "compile_mode": "freestanding, -fPIC, -Os, warnings as errors",
+  "object": {
+    "path": "/tmp/mx490-arm/escl_adapter.o",
+    "format": "ELF32 ARM EABI5 relocatable",
+    "file_size": 5580,
+    "sections": {
+      ".text": 704,
+      ".rodata.str1.1": 190,
+      ".rodata": 2532,
+      ".bss": 116,
+      ".ARM.exidx": 16
+    }
+  },
+  "unresolved_platform_hooks": [
+    "strcmp",
+    "strncmp",
+    "strlen",
+    "strcspn",
+    "snprintf",
+    "mx490_escl_ops callbacks"
+  ],
+  "placement": {
+    "largest_candidate_free_range": 3460711,
+    "adapter_object_sections_total_before_relocation": 3558,
+    "fits_by_size": true
+  },
+  "caveat": "This is a compile/layout probe only. It has no Canon HTTP dispatch hook, no scanner-engine binding, no linker script for MX490 runtime addresses, and is not flashable."
+}

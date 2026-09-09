@@ -243,3 +243,11 @@ validated. The `SF0C` record declares the image address window
 those ranges would remain within the declared address bounds. It does not prove
 boot acceptance, executable mapping, or signature validity. The raw metadata
 and checksums are recorded in `firmware/sf-metadata-4.040.json`.
+
+The platform-neutral eSCL adapter was also compiled as freestanding ARM/Thumb
+code for ARM926EJ-S. Its relocatable object has 704 bytes of `.text`, about
+2.7 KiB of read-only XML/data, and 116 bytes of `.bss`, so it fits comfortably
+inside the candidate erased ranges. The object still has unresolved libc and
+Canon scanner callbacks, and no MX490 linker script or HTTP dispatch hook. The
+size/layout probe is recorded in `firmware/arm-escl-layout-4.040.json`; it is
+not a firmware image.
