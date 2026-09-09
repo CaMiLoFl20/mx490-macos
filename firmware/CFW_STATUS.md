@@ -293,3 +293,12 @@ The HTTP route lead inventory is now recorded in
 read-only result: the server is present, eSCL/WSD routes return 404, and the
 update CGI returns 401. These are dispatch-analysis leads, not direct patch
 addresses.
+
+The local Pixma protocol reference provides a concrete backend boundary: Canon
+CHMP over HTTP on `/canon/ij/command2/port3`, with ModeShift, `0xdb20`
+StartSession, `0xd820` ScanParam3, `0xd920` ScanStart3, `0xda20` status polls,
+`0xd420` JPEG chunks, and `0xef20` AbortSession. The repository now contains
+`chmp_scan.c/.h`, which serializes the command headers and ScanParam3 payload,
+validates response framing, and passes host tests; the C module also compiles
+as ARM/Thumb. The protocol capture is from a related Canon model, so each
+command must be validated against MX490 before native firmware integration.
