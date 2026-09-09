@@ -20,7 +20,18 @@ static const unsigned char capabilities[] =
     "<scan:DiscreteResolution><scan:XResolution>300</scan:XResolution><scan:YResolution>300</scan:YResolution></scan:DiscreteResolution>"
     "<scan:DiscreteResolution><scan:XResolution>600</scan:XResolution><scan:YResolution>600</scan:YResolution></scan:DiscreteResolution>"
     "</scan:DiscreteResolutions></scan:SupportedResolutions></scan:SettingProfile>"
-    "</scan:SettingProfiles></scan:PlatenInputCaps></scan:Platen></scan:ScannerCapabilities>";
+    "</scan:SettingProfiles></scan:PlatenInputCaps></scan:Platen>"
+    "<scan:Adf><scan:AdfSimplexInputCaps><scan:MaxWidth>2550</scan:MaxWidth>"
+    "<scan:MaxHeight>4195</scan:MaxHeight><scan:SettingProfiles><scan:SettingProfile>"
+    "<scan:ColorModes><scan:ColorMode>RGB24</scan:ColorMode>"
+    "<scan:ColorMode>Grayscale8</scan:ColorMode></scan:ColorModes>"
+    "<scan:DocumentFormats><pwg:DocumentFormat>image/jpeg</pwg:DocumentFormat></scan:DocumentFormats>"
+    "<scan:SupportedResolutions><scan:DiscreteResolutions>"
+    "<scan:DiscreteResolution><scan:XResolution>75</scan:XResolution><scan:YResolution>75</scan:YResolution></scan:DiscreteResolution>"
+    "<scan:DiscreteResolution><scan:XResolution>150</scan:XResolution><scan:YResolution>150</scan:YResolution></scan:DiscreteResolution>"
+    "<scan:DiscreteResolution><scan:XResolution>300</scan:XResolution><scan:YResolution>300</scan:YResolution></scan:DiscreteResolution>"
+    "</scan:DiscreteResolutions></scan:SupportedResolutions></scan:SettingProfile>"
+    "</scan:SettingProfiles></scan:AdfSimplexInputCaps></scan:Adf></scan:ScannerCapabilities>";
 
 static const unsigned char status[] =
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -75,13 +86,13 @@ int mx490_escl_handle(const struct mx490_escl_request *request,
 
     if (strcmp(request->method, "GET") == 0 &&
         path_is(request->path, "/eSCL/ScannerCapabilities")) {
-        set_response(response, 200, "application/xml", capabilities,
+        set_response(response, 200, "text/xml", capabilities,
                      sizeof(capabilities) - 1);
         return 0;
     }
     if (strcmp(request->method, "GET") == 0 &&
         path_is(request->path, "/eSCL/ScannerStatus")) {
-        set_response(response, 200, "application/xml", status,
+        set_response(response, 200, "text/xml", status,
                      sizeof(status) - 1);
         return 0;
     }

@@ -36,6 +36,7 @@ int main(void)
     assert(strstr((const char *)response.body, "scan:ScannerCapabilities") != 0);
     assert(strstr((const char *)response.body, "RGB24") != 0);
     assert(strstr((const char *)response.body, "2.63") != 0);
+    assert(strstr((const char *)response.body, "AdfSimplexInputCaps") != 0);
     request = (struct mx490_escl_request){"POST", "/eSCL/ScanJobs", body, sizeof(body)};
     assert(mx490_escl_handle(&request, &ops, &response) == 0 && submitted &&
            response.location != 0);
