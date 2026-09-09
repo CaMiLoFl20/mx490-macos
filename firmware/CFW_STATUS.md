@@ -97,6 +97,12 @@ errors, and `test_escl_adapter.c` exercises the route flow. This is an
 integration component, not a flash image: its callbacks still need to be
 connected to the MX490 `X-CISSE-SCAN` functions recovered from the firmware.
 
+An ARM cross-reference pass using radare2 and the related-Canon `0x04000000`
+memory mapping found that the visible WSD task string is in a data/resource
+region rather than directly in executable code. The result and exact command
+are recorded in `r2-analysis.md`; runtime decompression/relocation recovery is
+now the prerequisite for identifying handler pointers.
+
 Static inspection shows that the same component includes TLS cipher tables,
 AES-GCM, SHA, and RSA references. That is evidence that the device has the
 cryptographic machinery needed to validate update metadata, but it is not a
