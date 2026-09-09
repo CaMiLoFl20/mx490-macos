@@ -1,0 +1,26 @@
+{
+  "capture": "local read-only packet capture; raw pcap intentionally excluded",
+  "device_service": "Canon MX490 scanner service",
+  "transport": {
+    "udp_port": 8612,
+    "tcp_port": 8612,
+    "stream_count": 2,
+    "tcp_payload_bytes": [24268, 22972]
+  },
+  "observed_xml_operations": ["StartJob", "VendorCmd/ModeShift", "EndJob"],
+  "observed_binary_commands": {
+    "db20": 1,
+    "d820": 1,
+    "d920": 1,
+    "da20": "6 on one stream; 2 on the other",
+    "d420": "273 on one stream; 254 on the other",
+    "ef20": 1
+  },
+  "observed_response_behavior": {
+    "xml_start_job": "StartJobResponse/OK",
+    "xml_mode_shift": "VendorCmdResponse/ModeShiftResponse/OK",
+    "image_reads": "repeated fixed-size CHMP requests followed by large TCP responses",
+    "job_close": "EndJob followed by stream teardown"
+  },
+  "interpretation": "MX490 scanner traffic is proprietary Canon CHMP over port 8612. The capture validates the XML and binary command sequence implemented by chmp_scan.c and chmp_session.c; it does not expose an eSCL endpoint."
+}

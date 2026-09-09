@@ -25,3 +25,20 @@ The firmware track will first produce a reproducible **analysis build**:
 5. Only consider a firmware patch if a genuine 4.050 image and a recovery method become available.
 
 The supported user-facing solution remains the SANE `pixma` backend behind AirSane. Firmware analysis is a research track and is not required for the AirScan bridge.
+
+## Zero-cost live protocol capture
+
+`capture_scan_traffic.sh` records one ordinary scanner session without changing
+the printer. It resolves the printer's Bonjour host name and limits the capture
+to unicast traffic between the Mac and that device. Run it in Terminal, enter
+the Mac administrator password at the local `sudo` prompt, start one small
+platen scan, then press Ctrl-C to stop capture:
+
+```sh
+./firmware/capture_scan_traffic.sh
+```
+
+The default output is `/tmp/mx490-scan.pcap`, which stays outside the repository.
+The capture can reveal the live Canon scanner command sequence and HTTP/BJNP
+transport needed by the firmware eSCL adapter. Review captures before sharing;
+they can contain device identifiers and scanned image bytes.

@@ -325,3 +325,19 @@ covered by host tests and compile for ARM/Thumb. They are kept separate from
 the binary session state machine until the firmware HTTP transport’s response
 semantics are recovered; the related-model handshake sequence remains a
 validation item for MX490.
+
+## Live MX490 protocol capture
+
+A local, read-only capture of an actual platen scan was completed on 2026-09-09.
+It confirms that the MX490 scanner service uses both UDP and TCP on port 8612.
+The TCP streams contain the expected XML `StartJob`, `VendorCmd/ModeShift`, and
+`EndJob` messages, followed by the binary `0xdb20`, `0xd820`, `0xd920`, repeated
+`0xda20` status polls, hundreds of `0xd420` image reads, and `0xef20` teardown.
+The sanitized evidence is in `live-capture-analysis-2026-09-09.json`; the raw
+pcap remains outside the repository because it contains device identifiers and
+scanned image data.
+
+This is the first MX490-specific validation of the CHMP serializers and session
+sequence. It removes the need to guess the scanner transport. The remaining
+firmware problem is narrower: expose an eSCL HTTP listener and translate its job
+operations into this verified port-8612 session.
