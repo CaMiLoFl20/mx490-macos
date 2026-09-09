@@ -1,0 +1,19 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "runtime_base": "0xF0020000",
+  "wrapper": {
+    "file_offset_start": "0x00002AC4",
+    "runtime_start": "0xF0022AC4",
+    "file_offset_end_exclusive": "0x00002C3C",
+    "runtime_end_exclusive": "0xF0022C3C",
+    "behavior": [
+      "saves r0-r3 and allocates 0x18000 bytes plus a 0x6e0-byte local area",
+      "initializes stream state and allocates a 0x370-byte inflate state object",
+      "calls the main inflate state machine at 0xF002133C",
+      "handles zlib-style return values 1, 2, and negative error codes",
+      "releases the inflate state before returning"
+    ]
+  },
+  "interpretation": "The MX490 image includes a conventional zlib-style decompression wrapper and state machine. The four discovered payloads can therefore be analyzed as standard zlib resources without recovering a proprietary LZ decoder.",
+  "caveat": "The static image does not expose a direct ARM BL caller for this wrapper; it may be reached through relocation tables or function pointers. This does not identify the payload destination or prove boot acceptance of a modified image."
+}

@@ -218,3 +218,11 @@ larger state machine. This is the first concrete loader callsite recovered and
 is recorded in `firmware/zlib-callsite-4.040.json`; the next task is to recover
 its state structure and stream descriptors rather than guessing at patch
 locations.
+
+The surrounding code identifies a zlib-style wrapper at file offset `0x2ac4`
+(runtime `0xF0022AC4`). It allocates a `0x18000`-byte work area and a
+`0x370`-byte inflate state object, calls the main state machine at
+`0xF002133C`, and handles the expected zlib return values. This is recorded in
+`firmware/zlib-wrapper-4.040.json`. The wrapper is likely reached through a
+relocation table or function pointer because no direct static ARM `BL` caller
+is present in the image.
