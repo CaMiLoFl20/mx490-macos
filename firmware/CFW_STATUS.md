@@ -235,3 +235,11 @@ handler, but only after proving the bootloader accepts records there, the
 runtime maps them executable, and the image integrity checks remain valid. The
 inventory is recorded in `firmware/free-space-4.040.json`; nothing has been
 written into those ranges.
+
+The proprietary `SF` wrapper records were parsed and independently checksum
+validated. The `SF0C` record declares the image address window
+`0xF0020000–0xF0FEFFFF`; that window includes all candidate erased ranges in
+`free-space-4.040.json`. This removes one packaging concern: a placement inside
+those ranges would remain within the declared address bounds. It does not prove
+boot acceptance, executable mapping, or signature validity. The raw metadata
+and checksums are recorded in `firmware/sf-metadata-4.040.json`.

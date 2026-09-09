@@ -1,0 +1,35 @@
+{
+  "stream": "/private/tmp/mx490-fw/clean-decrypted.bin",
+  "records": [
+    {
+      "raw": "SF090000005531373837CA",
+      "count": 9,
+      "checksum_valid": true,
+      "fields": {"raw_payload_hex": "0000005531373837", "observed_ascii": "U1787"}
+    },
+    {
+      "raw": "SF0500000901F0",
+      "count": 5,
+      "checksum_valid": true,
+      "fields": {"raw_payload_hex": "00000901", "observed_value_hex": "0x0901"}
+    },
+    {
+      "raw": "SF0C000002F0020000F0FEFFFF13",
+      "count": 12,
+      "checksum_valid": true,
+      "fields": {
+        "raw_payload_hex": "000002F0020000F0FEFFFF",
+        "declared_address_start": "0xF0020000",
+        "declared_address_end_inclusive": "0xF0FEFFFF"
+      }
+    },
+    {
+      "raw": "SF04000001FA",
+      "count": 4,
+      "checksum_valid": true,
+      "fields": {"raw_payload_hex": "000001", "observed_value_hex": "0x01"}
+    }
+  ],
+  "placement_implication": "The package metadata window contains all four candidate erased ranges identified in free-space-4.040.json.",
+  "caveat": "This proves only that the metadata range covers those addresses. It does not reveal boot-time code-signature policy, executable-memory attributes, or whether a modified payload will be accepted by the printer."
+}
