@@ -59,6 +59,15 @@ then writes those five returned values into the device model object. This is a
 complete description of the pre-update identity read at the application level;
 only the underlying USB packet bytes remain to be captured.
 
+The `deviceID` method also reveals its first control transfer. It builds an
+IOUSBDevRequest with `bmRequestType = 0xa1`, `bRequest = 0`, `wValue = 0`,
+`wIndex = 0`, and `wLength = 0x100` (256 bytes), using a 10,000 ms timeout.
+The returned buffer is converted to a string and used as the device-ID source
+for the tagged `MDL/VER/DES/STA/CMD` queries. This is a concrete, read-only
+request format that can be verified with a USB capture or a small libusb probe;
+the probe should only issue this control read and must not send the updater's
+write commands.
+
 The updater does not appear to expose a public firmware-read operation by name;
 the visible ROM method is a write path. Therefore the immediate safe objective
 is to recover the **read-only identity/status exchange** and the exact transition
