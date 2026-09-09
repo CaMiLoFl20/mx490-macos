@@ -151,3 +151,18 @@ Two load low addresses `0x001363AC` and `0x00000148`, one loads the literal
 supports a relocation or ROM-call transition before the compressed application
 components become executable. The scan is descriptive only; it does not infer
 that any low address is safe to call or patch.
+
+The decoded image also embeds Canon's catalog endpoints at
+`dtv-p.c-ij.com/sdata/struct01/version.bin` and `sdata.bin`. Their current
+responses are recorded without storing the binary contents in the repository:
+
+```sh
+python3 firmware/fetch_catalog.py -o firmware/catalog-YYYY-MM-DD.json
+```
+
+The current two-byte catalog value is `08 00`. The 64 KiB `sdata.bin` object
+decrypts with the published `dec_sdata` table into a CA trust store; it does
+not contain the MX490 firmware or a signing key. The MX490-specific
+`1787.bin` object remains a separate 272-byte opaque manifest, while the
+legacy `1787.xml` URL returns HTTP 404. These observations narrow the update
+path but do not recover firmware 4.050.

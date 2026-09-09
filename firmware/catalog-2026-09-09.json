@@ -1,0 +1,20 @@
+{
+  "version": {
+    "url": "http://dtv-p.c-ij.com/sdata/struct01/version.bin",
+    "content_type": "application/octet-stream",
+    "last_modified": "Mon, 24 Mar 2025 01:04:37 GMT",
+    "etag": "\"32649384730b2d61c9e79d46de589115\"",
+    "size": 2,
+    "sha256": "e545d395bb3fd971f91bf9a2b6722831df704efae6c1aa9da0989ed0970b77bb",
+    "first_32_bytes_hex": "0800"
+  },
+  "trust_store": {
+    "url": "http://dtv-p.c-ij.com/sdata/struct01/sdata.bin",
+    "content_type": "application/octet-stream",
+    "last_modified": "Mon, 24 Mar 2025 01:04:30 GMT",
+    "etag": "\"332fe913c9ccac1f237d19b1bdb49989\"",
+    "size": 65536,
+    "sha256": "35b27770f8918a10ec7999b4eebf42b1c56a33b82d1263ebf662dcc68f20301a",
+    "first_32_bytes_hex": "502ec32395bc455ee21f7ecb993f8aa165451db178094dfc39559227540a008a"
+  }
+}
