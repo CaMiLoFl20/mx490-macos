@@ -90,6 +90,13 @@ the firmware's HTTP dispatch tables. The next patching target is therefore the
 dispatch table and its handler pointers, followed by a minimal eSCL status/job
 adapter; the scanner engine itself appears to be present already.
 
+The repository now contains `escl_adapter.c/.h`, a platform-neutral eSCL
+handler boundary with capabilities, status, job submission, image streaming,
+and cancellation routes. It compiles under C99 with warnings treated as
+errors, and `test_escl_adapter.c` exercises the route flow. This is an
+integration component, not a flash image: its callbacks still need to be
+connected to the MX490 `X-CISSE-SCAN` functions recovered from the firmware.
+
 Static inspection shows that the same component includes TLS cipher tables,
 AES-GCM, SHA, and RSA references. That is evidence that the device has the
 cryptographic machinery needed to validate update metadata, but it is not a
