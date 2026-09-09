@@ -210,3 +210,11 @@ consistent with a standard `inflate` implementation. The finding is recorded
 in `firmware/zlib-runtime-4.040.json`. This is a loader/runtime anchor for
 future call-site recovery; it is not evidence that a modified image can be
 accepted or booted by the printer.
+
+A full ARM branch scan found one direct caller of that inflate core, at file
+offset `0x1e48` (runtime `0xF0021E48`). The caller passes stream/output state
+through the `r4`/`r5` structures, checks the returned status, and resumes a
+larger state machine. This is the first concrete loader callsite recovered and
+is recorded in `firmware/zlib-callsite-4.040.json`; the next task is to recover
+its state structure and stream descriptors rather than guessing at patch
+locations.

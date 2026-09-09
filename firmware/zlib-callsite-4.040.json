@@ -1,0 +1,23 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "target": {
+    "file_offset": "0x00002cb8",
+    "runtime": "0xF0022CB8"
+  },
+  "callers": [
+    {
+      "file_offset": "0x00001e48",
+      "runtime": "0xF0021E48",
+      "instruction": "bl 0xF0022CB8",
+      "preceding_setup": [
+        "stores input/output state fields through r4 and r5",
+        "passes r0=r5, r1=r4, r2=[sp,#4]",
+        "checks the returned status and resumes the state machine"
+      ],
+      "following_behavior": "reloads stream and output counters, branches to success/error states"
+    }
+  ],
+  "scan_method": "ARM little-endian BL encodings were scanned at every 4-byte alignment across decoded.bin; exactly one direct branch to the target was found.",
+  "interpretation": "The MX490 has a concrete stream-processing state machine calling the embedded zlib inflate core. Recovering its state structure and the four stream descriptors is the next loader-analysis step.",
+  "caveat": "The callsite does not by itself identify application code destinations or establish that a modified image will be accepted by the bootloader."
+}
