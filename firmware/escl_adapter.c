@@ -5,12 +5,22 @@
 
 static const unsigned char capabilities[] =
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    "<ScannerCapabilities xmlns=\"http://schemas.microsoft.com/windows/2006/01/wdp/scan\">"
-    "<Version>2.0</Version><MakeAndModel>Canon MX490 series</MakeAndModel>"
-    "<Platen><Width>216</Width><Height>297</Height></Platen>"
-    "<PlatenMinimumOpticalResolution>75</PlatenMinimumOpticalResolution>"
-    "<PlatenMaximumOpticalResolution>600</PlatenMaximumOpticalResolution>"
-    "</ScannerCapabilities>";
+    "<scan:ScannerCapabilities xmlns:scan=\"http://schemas.hp.com/imaging/escl/2011/05/03\" "
+    "xmlns:pwg=\"http://www.pwg.org/schemas/2010/12/sm\">"
+    "<pwg:Version>2.63</pwg:Version><pwg:MakeAndModel>Canon MX490 series</pwg:MakeAndModel>"
+    "<pwg:SerialNumber>MX490</pwg:SerialNumber>"
+    "<scan:Platen><scan:PlatenInputCaps><scan:MaxWidth>2550</scan:MaxWidth>"
+    "<scan:MaxHeight>3500</scan:MaxHeight><scan:SettingProfiles><scan:SettingProfile>"
+    "<scan:ColorModes><scan:ColorMode>RGB24</scan:ColorMode>"
+    "<scan:ColorMode>Grayscale8</scan:ColorMode></scan:ColorModes>"
+    "<scan:DocumentFormats><pwg:DocumentFormat>image/jpeg</pwg:DocumentFormat></scan:DocumentFormats>"
+    "<scan:SupportedResolutions><scan:DiscreteResolutions>"
+    "<scan:DiscreteResolution><scan:XResolution>75</scan:XResolution><scan:YResolution>75</scan:YResolution></scan:DiscreteResolution>"
+    "<scan:DiscreteResolution><scan:XResolution>150</scan:XResolution><scan:YResolution>150</scan:YResolution></scan:DiscreteResolution>"
+    "<scan:DiscreteResolution><scan:XResolution>300</scan:XResolution><scan:YResolution>300</scan:YResolution></scan:DiscreteResolution>"
+    "<scan:DiscreteResolution><scan:XResolution>600</scan:XResolution><scan:YResolution>600</scan:YResolution></scan:DiscreteResolution>"
+    "</scan:DiscreteResolutions></scan:SupportedResolutions></scan:SettingProfile>"
+    "</scan:SettingProfiles></scan:PlatenInputCaps></scan:Platen></scan:ScannerCapabilities>";
 
 static const unsigned char status[] =
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"

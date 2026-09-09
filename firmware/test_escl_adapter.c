@@ -33,6 +33,9 @@ int main(void)
     unsigned char body[] = {'x', 'm', 'l'};
     request = (struct mx490_escl_request){"GET", "/eSCL/ScannerCapabilities", 0, 0};
     assert(mx490_escl_handle(&request, &ops, &response) == 0 && response.status == 200);
+    assert(strstr((const char *)response.body, "scan:ScannerCapabilities") != 0);
+    assert(strstr((const char *)response.body, "RGB24") != 0);
+    assert(strstr((const char *)response.body, "2.63") != 0);
     request = (struct mx490_escl_request){"POST", "/eSCL/ScanJobs", body, sizeof(body)};
     assert(mx490_escl_handle(&request, &ops, &response) == 0 && submitted &&
            response.location != 0);
