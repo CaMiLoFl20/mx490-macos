@@ -312,12 +312,12 @@ G3010. Together these references support a translation-layer approach while
 keeping MX490 protocol compatibility an open validation item.
 
 The CHMP boundary now includes `chmp_session.c/.h`, a transport-callback state
-machine for binary StartSession, ScanParam3, ScanStart3, Status3 polling,
-ReadImage chunk extraction, and AbortSession. Host tests use a fake transport,
-and the module compiles as ARM/Thumb. The read path uses caller-owned buffers
-rather than allocating a 64 KiB firmware stack buffer. The current state
-machine intentionally omits the XML/ping handshake and has not been run against
-MX490; those remain integration and model-validation work.
+machine for XML StartJob/ModeShift, binary StartSession, ScanParam3, ScanStart3,
+Status3 polling, ReadImage chunk extraction, AbortSession, and XML EndJob.
+The XML channel is optional so the lower-level binary tests remain reusable.
+Host tests use a fake transport, and the module compiles as ARM/Thumb. The read
+path uses caller-owned buffers rather than allocating a 64 KiB firmware stack
+buffer.
 
 The CHMP module now also builds the documented ping byte and XML StartJob,
 ModeShift, and EndJob bodies with fixed-width job IDs. These builders are
@@ -338,6 +338,8 @@ pcap remains outside the repository because it contains device identifiers and
 scanned image data.
 
 This is the first MX490-specific validation of the CHMP serializers and session
-sequence. It removes the need to guess the scanner transport. The remaining
-firmware problem is narrower: expose an eSCL HTTP listener and translate its job
-operations into this verified port-8612 session.
+sequence. The repository also contains `bjnp_transport.c/.h`, which frames
+outgoing exchanges, tracks sequence numbers, and accepts fragmented TCP input
+through the incremental parser. Host and ARM builds pass. The remaining
+firmware problem is narrower: expose an eSCL HTTP listener and connect its job
+operations to a real socket/event loop for port 8612.
