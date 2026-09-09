@@ -34,23 +34,18 @@ static void set_response(struct mx490_escl_response *response, int status_code,
 }
 
 static int parse_job_path(const char *path, const char *suffix,
-                          unsigned long *job_id)
+                          const char *expected_id)
 {
     const char *prefix = "/eSCL/ScanJobs/";
     const char *p;
-    unsigned long value = 0;
-    int digits = 0;
+    size_t token_len;
 
     if (strncmp(path, prefix, strlen(prefix)) != 0) return 0;
     p = path + strlen(prefix);
-    while (*p >= '0' && *p <= '9') {
-        value = value * 10 + (unsigned long)(*p - '0');
-        ++p;
-        ++digits;
-    }
-    if (!digits || strcmp(p, suffix) != 0) return 0;
-    *job_id = value;
-    return 1;
+    token_len = strcspn(p, "/");
+    return token_len == strlen(expected_id) &&
+           strncmp(p, expected_id, token_len) == 0 &&
+           strcmp(p + token_len, suffix) == 0;
 }
 
 int mx490_escl_handle(const struct mx490_escl_request *request,
@@ -59,7 +54,7 @@ int mx490_escl_handle(const struct mx490_escl_request *request,
 {
     static unsigned long current_job;
     static char location[64];
-    unsigned long requested_job;
+    static char public_job_id[48];
     const unsigned char *data;
     size_t len;
     int last;
@@ -90,18 +85,18 @@ int mx490_escl_handle(const struct mx490_escl_request *request,
             return rc;
         }
         set_response(response, 201, "text/plain", 0, 0);
-        (void)snprintf(location, sizeof(location), "/eSCL/ScanJobs/%lu",
-                       current_job);
+        /* eSCL clients expect a UUID-shaped job token. The numeric value is
+         * still retained for the Canon callback. */
+        (void)snprintf(public_job_id, sizeof(public_job_id),
+                       "00000000-0000-4000-8000-%012lu", current_job);
+        (void)snprintf(location, sizeof(location), "/eSCL/ScanJobs/%s",
+                       public_job_id);
         response->location = location;
         return 0;
     }
     if (strcmp(request->method, "GET") == 0 &&
-        parse_job_path(request->path, "/NextDocument", &requested_job)) {
+        parse_job_path(request->path, "/NextDocument", public_job_id)) {
         if (ops->next_document == 0) return -1;
-        if (requested_job != current_job) {
-            set_response(response, 404, "text/plain", 0, 0);
-            return -1;
-        }
         rc = ops->next_document(current_job, &data, &len, &last, ops->ctx);
         if (rc != 0) {
             set_response(response, 404, "text/plain", 0, 0);
@@ -111,12 +106,8 @@ int mx490_escl_handle(const struct mx490_escl_request *request,
         return last ? 1 : 0;
     }
     if (strcmp(request->method, "DELETE") == 0 &&
-        parse_job_path(request->path, "", &requested_job)) {
+        parse_job_path(request->path, "", public_job_id)) {
         if (ops->cancel_job == 0) return -1;
-        if (requested_job != current_job) {
-            set_response(response, 404, "text/plain", 0, 0);
-            return -1;
-        }
         rc = ops->cancel_job(current_job, ops->ctx);
         set_response(response, rc == 0 ? 200 : 500, "text/plain", 0, 0);
         return rc;

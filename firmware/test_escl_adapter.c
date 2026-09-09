@@ -36,9 +36,9 @@ int main(void)
     request = (struct mx490_escl_request){"POST", "/eSCL/ScanJobs", body, sizeof(body)};
     assert(mx490_escl_handle(&request, &ops, &response) == 0 && submitted &&
            response.location != 0);
-    request = (struct mx490_escl_request){"GET", "/eSCL/ScanJobs/42/NextDocument", 0, 0};
+    request = (struct mx490_escl_request){"GET", "/eSCL/ScanJobs/00000000-0000-4000-8000-000000000042/NextDocument", 0, 0};
     assert(mx490_escl_handle(&request, &ops, &response) == 1 && response.body_len == 4);
-    request = (struct mx490_escl_request){"DELETE", "/eSCL/ScanJobs/42", 0, 0};
+    request = (struct mx490_escl_request){"DELETE", "/eSCL/ScanJobs/00000000-0000-4000-8000-000000000042", 0, 0};
     assert(mx490_escl_handle(&request, &ops, &response) == 0 && response.status == 200);
     return 0;
 }
