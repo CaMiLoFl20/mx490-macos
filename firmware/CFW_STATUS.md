@@ -192,3 +192,12 @@ python3 firmware/probe_live_services.py PRINTER_IP
 
 This is the baseline a native eSCL patch must change: the existing BJNP/WSD
 scanner remains reachable, but no eSCL HTTP endpoint is currently registered.
+
+The compression scan is now automated with `firmware/scan_compression.py`. On
+4.040 it finds exactly the four valid zlib streams listed above and finds zero
+instances of the related-model Canon LZ decompressor signature
+`70 b5 05 4c 05 48 06 49 45 1a 0e 46 2a 46 31 46 20 46 ff`. This means the
+known MG6450-style unpacker cannot be reused as-is for MX490. It does not prove
+that no other decompressor exists, but it removes the only known direct route
+to recovering executable application code from this image. The resulting
+machine-readable checkpoint is `firmware/compression-4.040.json`.
