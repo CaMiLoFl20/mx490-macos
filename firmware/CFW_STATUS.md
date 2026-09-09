@@ -84,6 +84,12 @@ inventing a new scanner transport: a native eSCL handler could translate its
 `/eSCL/ScannerStatus`, `ScanJobs`, and image-stream requests into this existing
 scan-job machinery if the corresponding handler functions are recovered.
 
+The route inventory also finds two `/wsd/` literals (`0x278977` and
+`0x29738f`) and the existing CGI route vocabulary. These are likely entries in
+the firmware's HTTP dispatch tables. The next patching target is therefore the
+dispatch table and its handler pointers, followed by a minimal eSCL status/job
+adapter; the scanner engine itself appears to be present already.
+
 Static inspection shows that the same component includes TLS cipher tables,
 AES-GCM, SHA, and RSA references. That is evidence that the device has the
 cryptographic machinery needed to validate update metadata, but it is not a
