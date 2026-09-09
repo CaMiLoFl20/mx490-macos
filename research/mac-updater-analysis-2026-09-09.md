@@ -68,6 +68,16 @@ request format that can be verified with a USB capture or a small libusb probe;
 the probe should only issue this control read and must not send the updater's
 write commands.
 
+The field parser searches the returned string for each key, then searches for
+the next semicolon and returns the bytes between them. The expected response is
+therefore a semicolon-delimited ASCII record, conceptually:
+
+`...;MDL:<model>;VER:<version>;DES:<description>;STA:<status>;CMD:<command>;...`
+
+The parser is case-insensitive during key lookup and returns no value if a key
+or terminating semicolon is absent. This is sufficient to build a safe offline
+decoder for a future USB capture without reproducing any write operation.
+
 The updater does not appear to expose a public firmware-read operation by name;
 the visible ROM method is a write path. Therefore the immediate safe objective
 is to recover the **read-only identity/status exchange** and the exact transition
