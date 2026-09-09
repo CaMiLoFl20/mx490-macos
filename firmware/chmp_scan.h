@@ -23,6 +23,12 @@ void mx490_chmp_header(uint16_t code, uint16_t flags, uint16_t param_len,
 int mx490_chmp_scan_params(const struct mx490_chmp_scan_params *params,
                            uint8_t out[MX490_CHMP_SCAN_PARAM_SIZE]);
 
+/* Build the XML/ping handshake bodies used by the CHMP session. */
+size_t mx490_chmp_ping(uint8_t out[1]);
+size_t mx490_chmp_xml_start_job(char *out, size_t cap, unsigned long job_id);
+size_t mx490_chmp_xml_mode_shift(char *out, size_t cap, unsigned long job_id);
+size_t mx490_chmp_xml_end_job(char *out, size_t cap, unsigned long job_id);
+
 /* Validate the 16-byte d420 response prefix and return its data length. */
 int mx490_chmp_read_image_length(const uint8_t *response, size_t response_len,
                                  uint32_t *data_len, int *last);

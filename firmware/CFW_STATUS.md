@@ -318,3 +318,10 @@ and the module compiles as ARM/Thumb. The read path uses caller-owned buffers
 rather than allocating a 64 KiB firmware stack buffer. The current state
 machine intentionally omits the XML/ping handshake and has not been run against
 MX490; those remain integration and model-validation work.
+
+The CHMP module now also builds the documented ping byte and XML StartJob,
+ModeShift, and EndJob bodies with fixed-width job IDs. These builders are
+covered by host tests and compile for ARM/Thumb. They are kept separate from
+the binary session state machine until the firmware HTTP transport’s response
+semantics are recovered; the related-model handshake sequence remains a
+validation item for MX490.

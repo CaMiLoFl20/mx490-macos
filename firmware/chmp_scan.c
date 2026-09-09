@@ -36,3 +36,26 @@ int mx490_chmp_read_image_length(const uint8_t *r, size_t n, uint32_t *len, int 
     *len = ((uint32_t)r[12] << 24) | ((uint32_t)r[13] << 16) | ((uint32_t)r[14] << 8) | r[15];
     return 0;
 }
+
+static size_t copy_text(char *out, size_t cap, size_t pos, const char *s) {
+    while (*s) { if (pos + 1 < cap) out[pos] = *s; ++pos; ++s; }
+    if (cap) out[pos < cap - 1 ? pos : cap - 1] = 0;
+    return pos;
+}
+static size_t copy_job(char *out, size_t cap, size_t pos, unsigned long id) {
+    char d[8]; size_t i = 8; unsigned long q;
+    while (i) { q = 0; while (id >= 10) { id -= 10; ++q; } d[--i] = (char)('0' + id); id = q; }
+    for (i = 0; i < 8; ++i) { if (pos + 1 < cap) out[pos] = d[i]; ++pos; }
+    if (cap) out[pos < cap - 1 ? pos : cap - 1] = 0;
+    return pos;
+}
+size_t mx490_chmp_ping(uint8_t out[1]) { if (out) out[0] = 0; return 1; }
+size_t mx490_chmp_xml_start_job(char *out, size_t cap, unsigned long id) {
+    size_t p = 0; p = copy_text(out, cap, p, "<?xml version=\"1.0\" encoding=\"utf-8\" ?><cmd><ivec:contents><ivec:operation>StartJob</ivec:operation><ivec:param_set servicetype=\"scan\"><ivec:jobID>"); p = copy_job(out, cap, p, id); p = copy_text(out, cap, p, "</ivec:jobID><ivec:bidi>1</ivec:bidi></ivec:param_set></ivec:contents></cmd>"); return p;
+}
+size_t mx490_chmp_xml_mode_shift(char *out, size_t cap, unsigned long id) {
+    size_t p = 0; p = copy_text(out, cap, p, "<?xml version=\"1.0\" encoding=\"utf-8\" ?><cmd><ivec:contents><ivec:operation>VendorCmd</ivec:operation><ivec:param_set servicetype=\"scan\"><ivec:jobID>"); p = copy_job(out, cap, p, id); p = copy_text(out, cap, p, "</ivec:jobID><vcn:ijoperation>ModeShift</vcn:ijoperation><vcn:ijmode>1</vcn:ijmode></ivec:param_set></ivec:contents></cmd>"); return p;
+}
+size_t mx490_chmp_xml_end_job(char *out, size_t cap, unsigned long id) {
+    size_t p = 0; p = copy_text(out, cap, p, "<?xml version=\"1.0\" encoding=\"utf-8\" ?><cmd><ivec:contents><ivec:operation>EndJob</ivec:operation><ivec:param_set servicetype=\"scan\"><ivec:jobID>"); p = copy_job(out, cap, p, id); p = copy_text(out, cap, p, "</ivec:jobID></ivec:param_set></ivec:contents></cmd>"); return p;
+}
