@@ -251,3 +251,11 @@ inside the candidate erased ranges. The object still has unresolved libc and
 Canon scanner callbacks, and no MX490 linker script or HTTP dispatch hook. The
 size/layout probe is recorded in `firmware/arm-escl-layout-4.040.json`; it is
 not a firmware image.
+
+A probe-only libc shim (`firmware/arm_freestanding_shims.c`) now supplies the
+small string and formatting functions used by the adapter. Both sources compile
+as ARM EABI5 relocatable objects; their combined pre-link footprint is about
+4.1 KiB. Linking could not be completed because this environment has Clang's
+ARM compiler but no ARM-capable linker (`ld.lld` or `arm-none-eabi-ld`), and the
+host Apple linker rejects ARM objects. The layout and exact limitation are
+recorded in `firmware/arm-freestanding-layout.json`.
