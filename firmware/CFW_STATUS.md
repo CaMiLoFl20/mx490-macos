@@ -285,3 +285,11 @@ every standard S-record checksum. A test insertion of the 4,352-byte probe at
 `firmware/experimental-srec-pack-4.040.json`. The stream is explicitly marked
 non-flashable because it has no HTTP dispatch hook, scanner binding, or verified
 boot/integrity behavior.
+
+The HTTP route lead inventory is now recorded in
+`firmware/http-dispatch-leads-4.040.json`. It ties exact static offsets for
+`SSLServer`, `SOAP`, `CGI:\\W`, `SCAN`, both `/wsd/` literals, `KSL_HTTP_`,
+`handlercallback`, `bonjour`, `HTTP/1.`, and `httpc_thread_main` to the live
+read-only result: the server is present, eSCL/WSD routes return 404, and the
+update CGI returns 401. These are dispatch-analysis leads, not direct patch
+addresses.

@@ -1,0 +1,29 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "runtime_base": "0xF0020000",
+  "static_anchors": [
+    {"file_offset": "0x26A7D4", "runtime": "0xF028A7D4", "value": "SSLServer"},
+    {"file_offset": "0x277C44", "runtime": "0xF0297C44", "value": "SOAP"},
+    {"file_offset": "0x278977", "runtime": "0xF0298977", "value": "/wsd/"},
+    {"file_offset": "0x28331F", "runtime": "0xF02A331F", "value": "CGI:\\W"},
+    {"file_offset": "0x283333", "runtime": "0xF02A3333", "value": "SOAP"},
+    {"file_offset": "0x283342", "runtime": "0xF02A3342", "value": "SCAN"},
+    {"file_offset": "0x29738F", "runtime": "0xF02B738F", "value": "/wsd/"},
+    {"file_offset": "0x2D5DD5", "runtime": "0xF02F5DD5", "value": "KSL_HTTP_"},
+    {"file_offset": "0x305A02", "runtime": "0xF0325A02", "value": "handlercallback"},
+    {"file_offset": "0x336BD4", "runtime": "0xF0356BD4", "value": "bonjour"},
+    {"file_offset": "0x33AE9E", "runtime": "0xF035AE9E", "value": "HTTP/1."},
+    {"file_offset": "0x4D96EC", "runtime": "0xF04D96EC", "value": "httpc_thread_main"}
+  ],
+  "live_read_only_probe": {
+    "eSCL_ScannerCapabilities_http": 404,
+    "eSCL_ScannerCapabilities_https": 404,
+    "eSCL_ScannerStatus_http": 404,
+    "eSCL_ScannerStatus_https": 404,
+    "wsd_http": 404,
+    "update_cgi_http": 401,
+    "server": "KS_HTTP/1.0"
+  },
+  "interpretation": "The image contains an HTTP/CGI/SOAP/WSD server stack and a named handler-callback concept. The live device confirms the HTTP server is active but has no eSCL route. The next static step is cross-referencing these anchors to registration tables or callback pointers.",
+  "caveat": "String offsets are not function addresses and do not authorize patching. No authentication was bypassed and no write/update request was sent."
+}
