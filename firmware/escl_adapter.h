@@ -27,6 +27,7 @@ struct mx490_escl_request {
 struct mx490_escl_response {
     int status;
     const char *content_type;
+    const char *location;
     const unsigned char *body;
     size_t body_len;
 };
