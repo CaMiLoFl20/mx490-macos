@@ -1,0 +1,36 @@
+{
+  "image": "/private/tmp/mx490-fw/decoded.bin",
+  "size": 16580608,
+  "sha256": "2210f9bee042bc05bc6feea4b0d5bea5e328ad62ebd1fe7b8ef320b98d3e9ba0",
+  "mapping": "runtime = 0xF0020000 + file_offset",
+  "strings": [
+    {
+      "needle": "WSDBasicIO",
+      "file_offset": 2693738,
+      "runtime": "0xf02b1a6a"
+    },
+    {
+      "needle": "tskWSDScanInfoServi",
+      "file_offset": 3010988,
+      "runtime": "0xf02ff1ac"
+    },
+    {
+      "needle": "WSDManager",
+      "file_offset": 10702959,
+      "runtime": "0xf0a5506f"
+    },
+    {
+      "needle": "ScanJobItem",
+      "file_offset": 10703013,
+      "runtime": "0xf0a550a5"
+    },
+    {
+      "needle": "WSDSSF",
+      "file_offset": 5078530,
+      "runtime": "0xf04f7e02"
+    }
+  ],
+  "literal_pointer_references": [],
+  "direct_reference_count": 0,
+  "interpretation": "No direct literal ARM/Thumb pointer references were found."
+}
